@@ -10,3 +10,7 @@
 
 .DS_Store
 /var
+
+/src/summary/changes*.js
+/src/summary/changes.rst
+/src/summary/statistics.rst
