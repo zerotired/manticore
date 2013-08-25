@@ -1,0 +1,77 @@
+# -*- mode: perl -*-
+
+#user  nobody;
+worker_processes  1;
+
+error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+   #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+        listen ${config:nginx-port};
+        server_name     ${templates:hostname} localhost;
+        server_tokens   on;
+
+        # if a precompiled gzip of the file exists, use it and force http proxies
+        # to use separate cache's based on User-Agent
+        gzip_vary on;
+        #gzip_static on;
+
+        gzip on;
+        merge_slashes     on;
+
+        # Increase max post size
+        client_max_body_size       21m;
+        client_body_buffer_size    128k;
+
+        proxy_set_header  X-Real-IP  $remote_addr;
+        proxy_set_header  Host       $host;
+
+        location ^~ / {
+            autoindex  on;
+            alias ${buildout:directory}/var/sphinx/;
+        }
+
+        location ^~ /issues {
+            autoindex  on;
+            alias ${buildout:directory}/var/issues/;
+        }
+
+        location ^~ /videos {
+            autoindex  on;
+            alias ${buildout:directory}/var/videos/;
+        }
+
+        location ^~ /downloads {
+            autoindex  on;
+            alias ${buildout:directory}/var/downloads/;
+        }
+    }
+
+}
