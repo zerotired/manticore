@@ -38,6 +38,6 @@ setup(
         'PIL==1.1.6',
     ],
     dependency_links=[
-        'https://github.com/zerotired/manticore-ext/tarball/master#egg=zt.manticore.ext-0.1.1',
+        'https://github.com/zerotired/manticore-ext/tarball/master#egg=zt.manticore.ext-0.1.2',
     ]
 )

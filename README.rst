@@ -98,16 +98,28 @@ Manticore addons
   | "lightweight artifact interconnection grapher" based on Graphviz_
 
 
+Prerequisites
+=============
+
+Mac OS X
+--------
+::
+
+    sudo port install py-virtualenv py-docutils gnuplot
+
+CentOS
+------
+::
+
+    yum -y install openjpeg-devel zlib-devel freetype-devel
+
+
 Installation
 ============
 
 Get a copy of the source tree::
 
     git clone git@git.example.net:documentation/meta.git
-
-Install prerequisites::
-
-    sudo port install py-virtualenv py-docutils gnuplot
 
 Run bootstrap and buildout as denoted below::
 
@@ -180,6 +192,11 @@ For git repositories::
     uris that are username-agnostic.
     The main reason is not every contributor might have read-write access to all
     repositories listed.
+
+    A solution could be to nail the username via ``~/.ssh/config``, e.g.::
+
+        Host git.example.net
+            User hotzenplotz
 
 
 For subversion repositories::
