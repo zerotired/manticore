@@ -1,0 +1,21 @@
+@import "default.css";
+
+.imgfloatleft {
+    float: left;
+    padding-right: 25px;
+    /* clear: both; */
+}
+
+.imgfloatright {
+    float: right;
+    padding-left: 25px;
+    /* clear: both; */
+}
+
+.section:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
