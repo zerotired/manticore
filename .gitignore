@@ -3,7 +3,6 @@
 /.installed.cfg
 /bin
 /develop-eggs
-/downloads
 /parts
 /.venv27
 /.idea
