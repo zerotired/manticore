@@ -8,15 +8,16 @@
 
    <!-- See http://developer.yahoo.com/yui/ for info on the reset, font and base css -->
    <link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
-   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/base/base-min.css"> 
+   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/base/base-min.css">
 
    <script>
    var Timeline_urlPrefix = "http://static.simile.mit.edu/timeline/api-2.3.0/";
    </script>
 
    <!-- Load the Timeline library after reseting the fonts, etc -->
+   <script src="http://static.simile.mit.edu/ajax/api-latest/simile-ajax-api.js" type="text/javascript"></script>
    <script src="http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js?bundle=true" type="text/javascript"></script>
- 
+
    <link rel="stylesheet" href="../_static/timeline/timeline.css" type="text/css">
 
    <script>
@@ -27,26 +28,26 @@
    <!-- Include data to be rendered with timeline widget -->
    <script src="../_downloads/changes.js" type="text/javascript"></script>
 
-   <script>        
+   <script>
         var tl;
         function onLoad() {
             var tl_el = document.getElementById("tl");
             var eventSource1 = new Timeline.DefaultEventSource();
-            
+
             var theme1 = Timeline.ClassicTheme.create();
             theme1.autoWidth = true; // Set the Timeline's "width" automatically.
                                      // Set autoWidth on the Timeline's first band's theme,
                                      // will affect all bands.
             theme1.timeline_start = new Date(Date.UTC(2009, 0, 1));
             theme1.timeline_stop  = new Date(Date.UTC(2013, 0, 1));
-            
+
             //var d = Timeline.DateTime.parseGregorianDateTime("2011-09-24");
             var d = new Date();
 
             var bandInfos = [
                 Timeline.createBandInfo({
                     width:          45, // set to a minimum, autoWidth will then adjust
-                    intervalUnit:   Timeline.DateTime.DAY, 
+                    intervalUnit:   Timeline.DateTime.DAY,
                     intervalPixels: 45,
                     eventSource:    eventSource1,
                     date:           d,
@@ -55,7 +56,7 @@
                 }),
                 Timeline.createBandInfo({
                     width:          45, // set to a minimum, autoWidth will then adjust
-                    intervalUnit:   Timeline.DateTime.MONTH, 
+                    intervalUnit:   Timeline.DateTime.MONTH,
                     intervalPixels: 50,
                     eventSource:    eventSource1,
                     date:           d,
@@ -65,7 +66,7 @@
                 /*
                 Timeline.createBandInfo({
                     width:          45, // set to a minimum, autoWidth will then adjust
-                    intervalUnit:   Timeline.DateTime.YEAR, 
+                    intervalUnit:   Timeline.DateTime.YEAR,
                     //intervalPixels: 200,
                     eventSource:    eventSource1,
                     date:           d,
@@ -82,14 +83,14 @@
 
             // create the Timeline
             tl = Timeline.create(tl_el, bandInfos, Timeline.HORIZONTAL);
-            
+
             var url = '.'; // The base url for image, icon and background image
                            // references in the data
-            eventSource1.loadJSON(timeline_data, url); // The data was stored into the 
+            eventSource1.loadJSON(timeline_data, url); // The data was stored into the
                                                        // timeline_data variable.
             tl.layout(); // display the Timeline
         }
-        
+
         var resizeTimerID = null;
         function onResize() {
             if (resizeTimerID == null) {

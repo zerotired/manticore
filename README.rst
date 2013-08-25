@@ -111,7 +111,7 @@ CentOS
 ------
 ::
 
-    yum -y install openjpeg-devel zlib-devel freetype-devel
+    yum -y install openjpeg-devel zlib-devel freetype-devel gnuplot
 
 
 Installation
