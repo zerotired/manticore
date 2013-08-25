@@ -11,6 +11,7 @@ Manticore README
 
 
 .. include:: manticore-links.rst
+.. include:: src/global/manticore-links.rst
 
 .. _manticore-about:
 
